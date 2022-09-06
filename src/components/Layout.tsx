@@ -11,7 +11,7 @@ const Layout = ({ children }: ILayoutProps) => {
   return (
     <div className="bg-black text-gray-200">
       <Navbar />
-      <main className="flex h-screen pt-16">
+      <main className="flex h-screen flex-col pt-16 lg:flex-row">
         <Sidebar />
         {children}
       </main>
