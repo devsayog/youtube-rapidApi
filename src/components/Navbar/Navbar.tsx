@@ -5,7 +5,7 @@ import SearchBox from '../SearchBox'
 
 const Navbar = () => {
   return (
-    <nav className="fixed inset-x-0 grid h-16 items-center bg-gray-900 px-2 sm:px-4 md:grid-cols-[auto,1fr] md:gap-2 md:px-6">
+    <nav className="fixed inset-x-0 z-10 grid h-16 items-center border-b border-b-gray-700 bg-gray-900 px-2 sm:px-4 md:grid-cols-[auto,1fr] md:gap-2 md:px-6">
       <button className="focus-visible::outline-none hidden rounded-full p-1 focus:bg-gray-700 md:block">
         <MenuOutlined className="h-7 w-7" />
       </button>
