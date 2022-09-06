@@ -1,17 +1,24 @@
 import { MenuOutlined } from '@mui/icons-material'
 import Link from 'next/link'
 
+import { useAppDispatch } from '@/store/useReduxHooks'
+
 import SearchBox from '../SearchBox'
+import { toggleIconText } from './navSlice'
 
 const Navbar = () => {
+  const dispatch = useAppDispatch()
   return (
-    <nav className="fixed inset-x-0 z-10 grid h-16 items-center border-b border-b-gray-700 bg-gray-900 px-2 sm:px-4 md:grid-cols-[auto,1fr] md:gap-2 md:px-6">
-      <button className="focus-visible::outline-none hidden rounded-full p-1 focus:bg-gray-700 md:block">
+    <nav className="fixed inset-x-0 z-10 grid h-16 items-center border-b border-b-gray-700 bg-gray-900 px-2 sm:px-4 md:px-6 lg:grid-cols-[auto,1fr] lg:gap-2">
+      <button
+        className="hidden rounded-full p-1 focus:outline-none focus-visible:bg-gray-700 lg:block"
+        onClick={() => dispatch(toggleIconText())}
+      >
         <MenuOutlined className="h-7 w-7" />
       </button>
-      <div className="flex h-full items-center justify-between">
+      <div className="flex w-full items-center justify-between">
         <Link href="/">
-          <a className="focus-visible::ring-1 flex items-center space-x-2 py-1 px-0.5 font-bold ring-gray-200 focus:outline-none">
+          <a className="flex items-center space-x-2 py-1 px-0.5 font-bold ring-gray-200 focus:outline-none focus-visible:ring-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 576 512"
