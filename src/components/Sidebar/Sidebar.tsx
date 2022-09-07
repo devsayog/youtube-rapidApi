@@ -18,9 +18,9 @@ const Sidebar = () => {
   }, [dispatch, isScreenSize])
   return (
     <aside
-      className={`overflow-x-auto bg-gray-900  lg:overflow-y-auto ${
+      className={`shrink-0 overflow-x-auto bg-gray-900  lg:overflow-y-auto ${
         isHiddenText ? 'w-20' : 'lg:w-60'
-      }`}
+      } sidebar`}
     >
       <nav>
         <ul className="mb-1 flex space-x-2 p-2 lg:mb-0 lg:block lg:space-x-0 lg:p-0 lg:pr-3 lg:pt-2">
