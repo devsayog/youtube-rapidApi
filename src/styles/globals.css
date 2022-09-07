@@ -1,12 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer base {
+  body {
+    @apply overflow-hidden bg-black text-gray-200;
+  }
+}
 * {
   scrollbar-width: auto;
   scrollbar-color: #d1d5db;
 }
 *::-webkit-scrollbar {
+  @apply w-2;
+}
+.sidebar::-webkit-scrollbar {
   @apply w-0 h-1 lg:w-2;
 }
 
@@ -16,4 +23,16 @@
 
 *::-webkit-scrollbar-thumb {
   @apply bg-gray-300 rounded-xl;
+}
+
+@layer components {
+  .paragraph {
+    @apply text-sm md:text-base 2xl:text-lg;
+  }
+  .paragraph-sm {
+    @apply text-xs md:text-sm 2xl:text-base;
+  }
+  .h4 {
+    @apply text-base font-medium md:text-lg 2xl:text-xl;
+  }
 }
