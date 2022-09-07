@@ -1,15 +1,21 @@
+import VideosList from '@/components/VideosList'
+import { useGetVideosQuery } from '@/services/rapidApi'
+
 const Home = () => {
+  const { data, isLoading, isError } = useGetVideosQuery('new')
+
+  if (isLoading) {
+    return <p>Loading . . .</p>
+  }
+  if (isError) {
+    return <p>OOPS!! Something went wrong !!!</p>
+  }
+  if (!data) {
+    return <p>No videos to display</p>
+  }
   return (
     <>
-      <section className="text-gray-600">
-        <div className="container mx-auto px-5 py-24">
-          <h1 className="mb-20 text-center text-2xl font-medium text-gray-900 sm:text-3xl">
-            Hello world
-            <br className="hidden sm:block" />
-            from nextjs
-          </h1>
-        </div>
-      </section>
+      <VideosList data={data} />
     </>
   )
 }
