@@ -36,7 +36,7 @@
     @apply text-base font-medium md:text-lg 2xl:text-xl;
   }
   .searchCard-wrapper {
-    @apply mx-auto mb-4 flex max-w-xs flex-col items-center space-x-3 sm:mx-0 sm:max-w-none sm:flex-row;
+    @apply mx-auto grid max-w-xs grid-cols-1 items-center sm:max-w-none sm:grid-cols-[288px,1fr];
   }
   .center {
     @apply grid h-full w-full place-items-center;

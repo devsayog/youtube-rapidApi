@@ -32,7 +32,7 @@ const Index = () => {
           <a key={i} className="searchCard-wrapper">
             <div className="mb-3 w-72 shrink-0 sm:mb-0">
               <img
-                className="mx-auto h-52 w-52 rounded-full object-cover"
+                className="mx-auto h-44 w-52 rounded-full object-cover"
                 src={
                   item.snippet.thumbnails.high.url ||
                   defaultConstants.thumbnailUrl
@@ -54,36 +54,44 @@ const Index = () => {
       )}
       {/* VIDEOS CARD */}
       {item.id.videoId && (
-        <Link href={`/channel/${item.id.videoId}`}>
-          <a key={i} className="searchCard-wrapper">
-            <img
-              className="h-52 w-72 object-cover"
-              src={
-                item.snippet.thumbnails.high.url ||
-                defaultConstants.thumbnailUrl
-              }
-              alt={item.snippet.title || defaultConstants.channelTitle}
-            />
-            <div>
-              <h4 className="h4 text-gray-300">
-                {item.snippet.title || defaultConstants.videoTitle}
-              </h4>
-              <p className="paragraph-sm  text-gray-500">
-                {new Date(item.snippet.publishedAt).toLocaleDateString()}
-              </p>
-              <Link href={`/channel/${item.snippet.channelId}`}>
-                <a className="paragraph mt-2 flex items-center text-gray-400 sm:mt-0">
-                  <span className="mr-1.5 h-5 w-5 rounded-full bg-gray-400" />{' '}
-                  {item.snippet.channelTitle || defaultConstants.channelTitle}{' '}
-                  <CheckCircleIcon className="ml-1 text-lg" />{' '}
-                </a>
-              </Link>
-              <p className="paragraph-sm text-gray-400">
+        <div className="searchCard-wrapper">
+          <Link href={`/video/${item.id.videoId}`}>
+            <a key={i}>
+              <img
+                className="h-44 w-72 object-cover"
+                src={
+                  item.snippet.thumbnails.high.url ||
+                  defaultConstants.thumbnailUrl
+                }
+                alt={item.snippet.title || defaultConstants.channelTitle}
+              />
+            </a>
+          </Link>
+          <div className="space-y-2 sm:pl-3">
+            <Link href={`/video/${item.id.videoId}`}>
+              <a>
+                <p className="paragraph font-bold text-gray-300">
+                  {item.snippet.title || defaultConstants.videoTitle}
+                </p>
+                <p className="paragraph-sm text-gray-500">
+                  {new Date(item.snippet.publishedAt).toLocaleDateString()}
+                </p>
+              </a>
+            </Link>
+            <Link href={`/channel/${item.snippet.channelId}`}>
+              <a className="paragraph-sm flex items-center text-gray-400 sm:mt-0">
+                <span className="mr-1.5 h-5 w-5 rounded-full bg-gray-400" />{' '}
+                {item.snippet.channelTitle || defaultConstants.channelTitle}{' '}
+                <CheckCircleIcon className="ml-1 text-lg" />{' '}
+              </a>
+            </Link>
+            <Link href={`/video/${item.id.videoId}`}>
+              <a className="paragraph-sm text-gray-400">
                 {item.snippet.description}
-              </p>
-            </div>
-          </a>
-        </Link>
+              </a>
+            </Link>
+          </div>
+        </div>
       )}
     </div>
   ))
