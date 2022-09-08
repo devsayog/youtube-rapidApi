@@ -1,16 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import process from 'process'
 
+import type { RecommendedVideosType } from '@/types/recommendedVideosType'
 import type { SearchVideosType } from '@/types/searchVideosType'
+import type { VideoDetailsType } from '@/types/videoDetailsType'
 
 const rapidApi = createApi({
   reducerPath: 'rapidApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://youtube-v31.p.rapidapi.com',
-    // headers: {
-    //   'X-RapidAPI-Key': '9fa36bd5bbmshf10ee0417b19224p1315a5jsnee2ac0d60fdf',
-    //   'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
-    // },
     prepareHeaders: (headers) => {
       headers.set('X-RapidAPI-Key', process.env.NEXT_PUBLIC_RAPID_API_KEY!)
       headers.set('X-RapidAPI-Host', 'youtube-v31.p.rapidapi.com')
@@ -21,7 +18,17 @@ const rapidApi = createApi({
     getVideos: builder.query<SearchVideosType, string>({
       query: (q) => `/search?part=snippet&q=${q}&maxResults=50`,
     }),
+    getVideoDetails: builder.query<VideoDetailsType, string>({
+      query: (id) => `/videos?part=snippet,statistics&id=${id}`,
+    }),
+    getRecommendedVideos: builder.query<RecommendedVideosType, string>({
+      query: (id) => `/search?part=snippet&relatedToVideoId=${id}&type=video`,
+    }),
   }),
 })
-export const { useGetVideosQuery } = rapidApi
+export const {
+  useGetVideosQuery,
+  useGetVideoDetailsQuery,
+  useGetRecommendedVideosQuery,
+} = rapidApi
 export default rapidApi
