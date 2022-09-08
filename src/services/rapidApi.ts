@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+import type { ChannelDetailsType } from '@/types/channelDetailsType'
+import type { ChannelVideosType } from '@/types/channelVideosType'
 import type { RecommendedVideosType } from '@/types/recommendedVideosType'
 import type { SearchType } from '@/types/searchResult'
 import type { SearchVideosType } from '@/types/searchVideosType'
@@ -28,6 +30,13 @@ const rapidApi = createApi({
     search: builder.query<SearchType, string>({
       query: (q) => `/search?part=snippet&q=${q}&maxResults=50`,
     }),
+    getChannelDetails: builder.query<ChannelDetailsType, string>({
+      query: (id) => `channels?part=snippet&id=${id}`,
+    }),
+    getChannelVideos: builder.query<ChannelVideosType, string>({
+      query: (id) =>
+        `search?channelId=${id}&part=snippet%2Cid&order=date&maxResults=50`,
+    }),
   }),
 })
 export const {
@@ -35,5 +44,7 @@ export const {
   useGetVideoDetailsQuery,
   useGetRecommendedVideosQuery,
   useSearchQuery,
+  useGetChannelDetailsQuery,
+  useGetChannelVideosQuery,
 } = rapidApi
 export default rapidApi
