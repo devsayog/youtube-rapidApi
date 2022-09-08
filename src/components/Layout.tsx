@@ -13,7 +13,7 @@ const Layout = ({ children }: ILayoutProps) => {
       <Navbar />
       <main className="flex h-screen flex-col overflow-hidden pt-16 lg:flex-row">
         <Sidebar />
-        <div className="h-full overflow-y-auto p-3">{children}</div>
+        <div className="h-full w-full overflow-y-auto p-3">{children}</div>
       </main>
     </>
   )
