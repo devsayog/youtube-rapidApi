@@ -1,10 +1,22 @@
 import { SearchOutlined } from '@mui/icons-material'
+import { useRouter } from 'next/router'
+import type { FormEvent } from 'react'
 import { useState } from 'react'
 
 const SearchBox = () => {
+  const router = useRouter()
   const [searchKeyword, setSearchKeyword] = useState('')
+
+  const handleSublit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!searchKeyword.trim()) {
+      return null
+    }
+    return router.push(`/search/${searchKeyword}`)
+  }
+
   return (
-    <form className="flex">
+    <form className="flex" onSubmit={handleSublit}>
       <input
         value={searchKeyword}
         onChange={(e) => setSearchKeyword(e.target.value)}
