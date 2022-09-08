@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -25,22 +25,27 @@ const Index = () => {
   }
   const { items } = data
   return items.map((item, i) => (
-    <div key={i} className="p-2">
+    <div key={i} className="overflow-y-hidden p-2">
       {/* CHANNEL CARD */}
       {item.id.channelId && (
         <Link href={`/channel/${item.id.channelId}`}>
           <a key={i} className="searchCard-wrapper">
-            <div className="mb-3 w-72 shrink-0 sm:mb-0">
-              <img
-                className="mx-auto h-44 w-52 rounded-full object-cover"
-                src={
-                  item.snippet.thumbnails.high.url ||
-                  defaultConstants.thumbnailUrl
-                }
-                alt={item.snippet.title || defaultConstants.channelTitle}
-              />
+            <div className="mb-3 sm:mb-0 sm:w-72 sm:shrink-0">
+              <div className="mx-auto h-44 w-44 rounded-full">
+                <Image
+                  layout="intrinsic"
+                  height={176}
+                  width={176}
+                  className="rounded-full object-cover"
+                  src={
+                    item.snippet.thumbnails.high.url ||
+                    defaultConstants.thumbnailUrl
+                  }
+                  alt={item.snippet.title || defaultConstants.channelTitle}
+                />
+              </div>
             </div>
-            <div>
+            <div className="sm:pl-3">
               <h4 className="h4 flex items-center text-gray-300">
                 {item.snippet.channelTitle || defaultConstants.channelTitle}{' '}
                 <CheckCircleIcon className="ml-1 text-lg" />{' '}
@@ -57,8 +62,11 @@ const Index = () => {
         <div className="searchCard-wrapper">
           <Link href={`/video/${item.id.videoId}`}>
             <a key={i}>
-              <img
-                className="h-44 w-72 object-cover"
+              <Image
+                layout="intrinsic"
+                height={176}
+                width={288}
+                className="object-cover"
                 src={
                   item.snippet.thumbnails.high.url ||
                   defaultConstants.thumbnailUrl

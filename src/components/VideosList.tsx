@@ -16,6 +16,9 @@ const VideosList = ({ data, recommended }: VideosListProps) => {
       className={`mx-auto grid max-w-xs gap-3 sm:max-w-none sm:grid-cols-2 md:grid-cols-3 md:gap-4 ${classes}`}
     >
       {data.items.map((item, i) => {
+        if (!item.snippet) {
+          return null
+        }
         return <VideoCard key={i} video={item as Item} />
       })}
     </section>

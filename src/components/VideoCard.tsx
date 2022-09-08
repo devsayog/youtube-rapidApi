@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { defaultConstants } from '@/constants/defaultConstants'
@@ -17,10 +18,13 @@ const VideoCard = ({ video }: IVideoCardProps) => {
     <div className="flex flex-col">
       <Link href={videoId ? `/video/${videoId}` : defaultConstants.videoUrl}>
         <a className="space-y-2">
-          <img
+          <Image
+            layout="intrinsic"
+            width={400}
+            height={176}
             alt="name"
-            src={snippet.thumbnails.high.url}
-            className="h-44 w-full object-cover"
+            src={snippet.thumbnails.high.url || defaultConstants.profilePicture}
+            className="object-cover"
           />
         </a>
       </Link>
@@ -42,7 +46,7 @@ const VideoCard = ({ video }: IVideoCardProps) => {
           </a>
         </Link>
         <Link href={videoId ? `/video/${videoId}` : defaultConstants.videoUrl}>
-          <a className="paragraph">
+          <a className="paragraph-sm">
             {snippet.title.slice(0, 60) ||
               defaultConstants.videoTitle.slice(0, 60)}
           </a>
@@ -56,7 +60,7 @@ const VideoCard = ({ video }: IVideoCardProps) => {
           }
         >
           <a
-            className="paragraph flex items-center font-light text-gray-300"
+            className="paragraph-sm flex items-center font-light text-gray-300"
             title={snippet.channelTitle || defaultConstants.channelTitle}
           >
             {snippet.channelTitle || defaultConstants.channelTitle}{' '}
