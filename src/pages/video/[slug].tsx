@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
 
 import Message from '@/components/Message'
+import Meta from '@/components/Meta'
 import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import { defaultConstants } from '@/constants/defaultConstants'
@@ -42,52 +43,57 @@ const Index = () => {
     statistics: { viewCount, likeCount },
   } = items[0]
   return (
-    <section className="flex h-full flex-col  md:space-x-4 lg:flex-row">
-      <div className="w-full">
-        <div className="h-[40vh] w-full sm:h-[50vh] md:h-[60vh] lg:h-[70vh]">
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${slug}`}
-            width="100%"
-            height="100%"
-            controls
-          />
-        </div>
-        <h4 className="h4 mt-3">{title}</h4>
-        <div className="mt-4 flex justify-between">
-          <Link
-            href={
-              channelId ? `/channel/${channelId}` : defaultConstants.channelUrl
-            }
-          >
-            <a
-              className="flex items-center space-x-3"
-              title={channelTitle || defaultConstants.channelTitle}
+    <>
+      <Meta title={`${title} - Youtube`} />
+      <section className="flex h-full flex-col  md:space-x-4 lg:flex-row">
+        <div className="w-full">
+          <div className="h-[40vh] w-full sm:h-[50vh] md:h-[60vh] lg:h-[70vh]">
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${slug}`}
+              width="100%"
+              height="100%"
+              controls
+            />
+          </div>
+          <h4 className="h4 mt-3">{title}</h4>
+          <div className="mt-4 flex justify-between">
+            <Link
+              href={
+                channelId
+                  ? `/channel/${channelId}`
+                  : defaultConstants.channelUrl
+              }
             >
-              <div className="h-12 w-12 rounded-full bg-gray-400" />
-              <p className="paragraph font-medium">
-                {channelTitle || defaultConstants.channelTitle}
+              <a
+                className="flex items-center space-x-3"
+                title={channelTitle || defaultConstants.channelTitle}
+              >
+                <div className="h-12 w-12 rounded-full bg-gray-400" />
+                <p className="paragraph font-medium">
+                  {channelTitle || defaultConstants.channelTitle}
+                </p>
+                <CheckCircleIcon className="text-lg " />
+              </a>
+            </Link>
+            <div>
+              <p className="paragraph-sm flex items-center text-gray-400">
+                <ThumbUpIcon className="mr-1.5" />
+                {parseInt(likeCount, 10).toLocaleString()}
               </p>
-              <CheckCircleIcon className="text-lg " />
-            </a>
-          </Link>
-          <div>
-            <p className="paragraph-sm flex items-center text-gray-400">
-              <ThumbUpIcon className="mr-1.5" />
-              {parseInt(likeCount, 10).toLocaleString()}
-            </p>
-            <p className="paragraph-sm flex items-center text-gray-400">
-              <VisibilityIcon className="mr-1.5" />
-              {parseInt(viewCount, 10).toLocaleString()}
-            </p>
+              <p className="paragraph-sm flex items-center text-gray-400">
+                <VisibilityIcon className="mr-1.5" />
+                {parseInt(viewCount, 10).toLocaleString()}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      {/* Display recommended videos */}
-      <div>
-        <h4 className="h4 my-3">Recommended videos</h4>
-        <VideosList recommended data={recommendedVideos} />
-      </div>
-    </section>
+        {/* Display recommended videos */}
+        <div>
+          <h4 className="h4 my-3">Recommended videos</h4>
+          <VideosList recommended data={recommendedVideos} />
+        </div>
+      </section>
+    </>
   )
 }
 

@@ -1,4 +1,5 @@
 import Message from '@/components/Message'
+import Meta from '@/components/Meta'
 import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import { useGetVideosQuery } from '@/services/rapidApi'
@@ -17,6 +18,7 @@ const Home = () => {
   }
   return (
     <>
+      <Meta title="Youtube" />
       <VideosList data={data} />
     </>
   )

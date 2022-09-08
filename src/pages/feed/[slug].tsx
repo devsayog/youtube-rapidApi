@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 
 import Message from '@/components/Message'
+import Meta from '@/components/Meta'
 import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import { useGetVideosQuery } from '@/services/rapidApi'
@@ -22,6 +23,7 @@ const Index = () => {
   }
   return (
     <>
+      <Meta title={`${slug} - Youtube`} />
       <VideosList data={data} />
     </>
   )

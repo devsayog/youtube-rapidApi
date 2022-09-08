@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router'
 
 import Message from '@/components/Message'
+import Meta from '@/components/Meta'
 import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import {
@@ -43,6 +44,7 @@ const Index = () => {
   } = items[0]
   return (
     <section>
+      <Meta title={`${title} - Youtube`} />
       <div className="h-[17vw] bg-purple-600" />
       <div className="mx-auto -mt-10 max-w-sm text-center sm:-mt-20">
         <img

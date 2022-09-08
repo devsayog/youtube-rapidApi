@@ -40,7 +40,7 @@ const Sidebar = () => {
                   >
                     <c.Icon />
                     <p
-                      className={`min-w-max text-sm font-medium sm:text-base xl:text-lg 2xl:text-xl ${
+                      className={`paragraph min-w-max font-medium ${
                         isHiddenText ? 'hidden' : 'block'
                       }`}
                     >
