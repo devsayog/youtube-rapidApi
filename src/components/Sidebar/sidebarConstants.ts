@@ -17,7 +17,7 @@ import TagFacesOutlinedIcon from '@mui/icons-material/TagFacesOutlined'
 
 export const categories = [
   { name: 'new', Icon: HomeOutlinedIcon },
-  { name: 'footaball', Icon: SportsSoccerOutlinedIcon },
+  { name: 'football', Icon: SportsSoccerOutlinedIcon },
   { name: 'music', Icon: MusicNoteOutlinedIcon },
   { name: 'sport', Icon: EmojiEventsOutlinedIcon },
   { name: 'gaming', Icon: SportsEsportsOutlinedIcon },

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
 import { useScreenResize } from '@/hooks/useScreenResize'
@@ -8,6 +9,7 @@ import { selectNav, showIconText } from '../Navbar/navSlice'
 import { categories } from './sidebarConstants'
 
 const Sidebar = () => {
+  const router = useRouter()
   const { isHiddenText } = useAppSelector(selectNav)
   const { isScreenSize } = useScreenResize(1024)
   const dispatch = useAppDispatch()
@@ -16,6 +18,7 @@ const Sidebar = () => {
       dispatch(showIconText())
     }
   }, [dispatch, isScreenSize])
+
   return (
     <aside
       className={`shrink-0 overflow-x-auto bg-gray-900  lg:overflow-y-auto ${
@@ -30,7 +33,9 @@ const Sidebar = () => {
               <li key={c.name}>
                 <Link href={link}>
                   <a
-                    className="flex items-center space-x-3 rounded-3xl bg-slate-500 py-2 px-6 capitalize transition-all hover:bg-gray-600 focus:outline-none focus-visible:bg-gray-600 lg:space-x-4 lg:rounded-none lg:bg-transparent lg:py-3"
+                    className={`flex items-center space-x-3 rounded-3xl py-2 px-6 capitalize transition-all hover:bg-gray-600 focus:outline-none focus-visible:bg-gray-600 lg:space-x-4 lg:rounded-none  lg:py-3 ${
+                      router.asPath === '/' && c.name === 'new' && 'bg-gray-600'
+                    }  ${router.query.slug === c.name && 'bg-gray-600'} `}
                     title={c.name === 'new' ? 'home' : c.name}
                   >
                     <c.Icon />
