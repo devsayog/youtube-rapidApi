@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import type { RecommendedVideosType } from '@/types/recommendedVideosType'
+import type { SearchType } from '@/types/searchResult'
 import type { SearchVideosType } from '@/types/searchVideosType'
 import type { VideoDetailsType } from '@/types/videoDetailsType'
 
@@ -24,11 +25,15 @@ const rapidApi = createApi({
     getRecommendedVideos: builder.query<RecommendedVideosType, string>({
       query: (id) => `/search?part=snippet&relatedToVideoId=${id}&type=video`,
     }),
+    search: builder.query<SearchType, string>({
+      query: (q) => `/search?part=snippet&q=${q}&maxResults=50`,
+    }),
   }),
 })
 export const {
   useGetVideosQuery,
   useGetVideoDetailsQuery,
   useGetRecommendedVideosQuery,
+  useSearchQuery,
 } = rapidApi
 export default rapidApi
