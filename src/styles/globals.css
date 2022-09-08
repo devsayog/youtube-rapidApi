@@ -38,4 +38,7 @@
   .searchCard-wrapper {
     @apply mx-auto mb-4 flex max-w-xs flex-col items-center space-x-3 sm:mx-0 sm:max-w-none sm:flex-row;
   }
+  .center {
+    @apply grid h-full w-full place-items-center;
+  }
 }
