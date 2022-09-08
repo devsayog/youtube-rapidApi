@@ -1,10 +1,11 @@
+import type { ChannelVideosType } from '@/types/channelVideosType'
 import type { Item, SearchVideosType } from '@/types/searchVideosType'
 import type { VideoDetailsType } from '@/types/videoDetailsType'
 
 import VideoCard from './VideoCard'
 
 interface VideosListProps {
-  data: SearchVideosType | VideoDetailsType
+  data: SearchVideosType | VideoDetailsType | ChannelVideosType
   recommended?: boolean
 }
 
