@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 
+import Message from '@/components/Message'
+import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import { useGetVideosQuery } from '@/services/rapidApi'
 
@@ -10,13 +12,13 @@ const Index = () => {
   const { data, isLoading, isError } = useGetVideosQuery(slug as string)
 
   if (isLoading) {
-    return <p>Loading . . .</p>
+    return <Spinner />
   }
   if (isError) {
-    return <p>OOPS!! Something went wrong !!!</p>
+    return <Message message="OOPS!! Something went wrong !!!" error />
   }
   if (!data) {
-    return <p>No videos to display</p>
+    return <Message message="No videos to display" error />
   }
   return (
     <>

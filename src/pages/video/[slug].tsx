@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
 
+import Message from '@/components/Message'
+import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import { defaultConstants } from '@/constants/defaultConstants'
 import {
@@ -23,17 +25,17 @@ const Index = () => {
     isError: isRecommendedVideosError,
   } = useGetRecommendedVideosQuery(slug as string)
   if (isLoading || isRecommendedVideosLoading) {
-    return <p>Loading . . .</p>
+    return <Spinner />
   }
   if (isError || isRecommendedVideosError) {
-    return <p>OOPS!! Something went wrong !!!</p>
+    return <Message message="OOPS!! Something went wrong !!!" error />
   }
   if (!data || !recommendedVideos) {
-    return <p>No videos to display</p>
+    return <Message message="No videos to display" error />
   }
   const { items } = data
   if (!items[0]) {
-    return <p>No videos to display</p>
+    return <Message message="No videos to display" error />
   }
   const {
     snippet: { title, channelId, channelTitle },

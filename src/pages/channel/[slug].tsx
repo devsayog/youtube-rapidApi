@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router'
 
+import Message from '@/components/Message'
+import Spinner from '@/components/Spinner'
 import VideosList from '@/components/VideosList'
 import {
   useGetChannelDetailsQuery,
@@ -23,17 +25,17 @@ const Index = () => {
   } = useGetChannelVideosQuery(slug as string)
 
   if (isLoading || channelVideosLoading) {
-    return <p>Loading . . .</p>
+    return <Spinner />
   }
   if (isError || channelVideosError) {
-    return <p>OOPS!! Something went wrong !!!</p>
+    return <Message message="OOPS!! Something went wrong !!!" error />
   }
   if (!channelDetail || !channelVideos) {
-    return <p>No videos to display</p>
+    return <Message message="No videos to display" error />
   }
   const { items } = channelDetail
   if (!items[0]) {
-    return <p>No channel to display</p>
+    return <Message message="No channel to display" error />
   }
   const {
     snippet: { title, thumbnails, description },

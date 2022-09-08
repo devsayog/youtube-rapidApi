@@ -3,6 +3,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import Message from '@/components/Message'
+import Spinner from '@/components/Spinner'
 import { defaultConstants } from '@/constants/defaultConstants'
 import { useSearchQuery } from '@/services/rapidApi'
 
@@ -13,13 +15,13 @@ const Index = () => {
   const { data, isLoading, isError } = useSearchQuery(slug as string)
 
   if (isLoading) {
-    return <p>Loading . . .</p>
+    return <Spinner />
   }
   if (isError) {
-    return <p>OOPS!! Something went wrong !!!</p>
+    return <Message message="OOPS!! Something went wrong !!!" error />
   }
   if (!data) {
-    return <p>No videos to display</p>
+    return <Message message="No videos to display" error />
   }
   const { items } = data
   return items.map((item, i) => (
